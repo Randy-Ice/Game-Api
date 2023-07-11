@@ -55,7 +55,7 @@ const gameSchema = new Schema({
         required: true
     },
     score: {
-        Type: Number,
+        type: Number,
     },
     where_to_buy: {
         type: [Object]
@@ -69,17 +69,17 @@ const Game = mongoose.model('Game', gameSchema);
 const addGame = async () => {
     const game = new Game({
         title: `
-        Vampire: The Masquerade - Bloodlines 2
+        Deus Ex: Mankind Dividedz
         `,
         description: `
-        Sired in an act of vampire insurrection, your existence ignites the war for Seattle's blood trade. Enter uneasy alliances with the creatures who control the city and uncover the sprawling conspiracy which plunged Seattle into a bloody civil war between powerful vampire factions. ♞Become the Ultimate Vampire Immerse yourself in the World of Darkness and live out your vampire fantasy in a city filled with intriguing characters that react to your choices. You and your unique disciplines are a weapon in our forward-driving, fast-moving, melee-focussed combat
+        Deus Ex: Mankind Divided is currently the last entry in the Deus Ex franchise. It was two years after the accident in Human Revolution, where augmented people started to act uncontrollable and aggressive. As it turns out, a rogue group called Illuminati made it look like a proof for their instability and now augmented people are living like outcasts. We follow Adam Jensen once again as he works as a double agent for Interpol and a hackers group called Juggernaut Collective to confront the Illuminati and reveal the truth. The core gameplay of Mankind
         `,
         platform: ['xbox', 'playstation', 'pc'],
-        genre: ['Action/Adventure', 'RPG'],
-        //age_rating: '',
-        //release_date:'' ,
-        developer: 'Hardsuit Labs',
-        score: 75,
+        genre: ['Action/Adventure', 'RPG', 'Shooter'],
+        age_rating: 'M',
+        release_date: new Date('Aug 22, 2016'),
+        developer: 'Square Enix, Eidos Interactive, Feral Interactive', 
+        score: 83,
         where_to_buy: [
             {steam: 'https://store.steampowered.com/'},
             {google: 'https://google.com'}
@@ -102,6 +102,7 @@ const addGame = async () => {
 const updateGame = async (id) => {
     try{
         const game = await Game.findOneAndUpdate(id)
+        if(!game) return
         game.set({
             title: 'Vampire: The Masquerade - Bloodlines 2'
             
@@ -113,7 +114,7 @@ const updateGame = async (id) => {
         console.log(err.message)
     }
 }
-updateGame('649deea71f4c904525473753')
+//updateGame('649deea71f4c904525473753')
 
 const deleteGame = async (id) => {
     try{
@@ -130,3 +131,4 @@ const deleteGame = async (id) => {
 
 
 module.exports = mongoose.model('Game', gameSchema)
+//basic backend game api structure
