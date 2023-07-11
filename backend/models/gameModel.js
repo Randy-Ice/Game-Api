@@ -131,4 +131,3 @@ const deleteGame = async (id) => {
 
 
 module.exports = mongoose.model('Game', gameSchema)
-//basic backend game api structure
